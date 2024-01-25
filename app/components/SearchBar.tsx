@@ -1,9 +1,10 @@
 'use client'
 import React, { useState } from 'react'
+import WordContext from '../contexts/WordContext'
 
 const SearchBar = () => {
 
-    const [word,setWord] = useState<string>("")
+    let {currentWord,setCurrentWord} = React.useContext(WordContext)
 
     async function fetchWord(word: string) {
         const request = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
@@ -11,14 +12,14 @@ const SearchBar = () => {
         console.log(response)
         return response
     }
-
+    
     return (
         <section>
-            <input value={word} onChange={(e) => {
-                setWord(e.target.value)
-                console.log(word)
+            <input onSubmit={()=>{fetchWord(currentWord)}} value={currentWord} onChange={(e) => {
+                setCurrentWord(e.target.value)
+                console.log(currentWord)
                 }} className="" type="text" />
-            <button onClick={()=>{fetchWord(word)}}>search</button>
+            <button onClick={()=>{fetchWord(currentWord)}}>search</button>
         </section>
     )
 }

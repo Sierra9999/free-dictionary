@@ -1,19 +1,26 @@
 'use client'
 import React from 'react'
-import WordContext from '../contexts/WordContext'
 import fetchWord from '../services/fetchWord'
-
+import WordContext from '../contexts/WordContext'
 
 const SearchBar = () => {
+    let [input, setInput] = React.useState("")
     let {currentWord,setCurrentWord} = React.useContext(WordContext)
-    
+
+    const handleSubmit = ()=>{
+        console.log("123")
+        //@ts-ignore
+        fetchWord(input).then(data => {setCurrentWord(data)})
+        console.log(currentWord)
+    }
+
     return (
         <section>
-            <input onSubmit={()=>{fetchWord(currentWord)}} value={currentWord} onChange={(e) => {
-                setCurrentWord(e.target.value)
-                console.log(currentWord)
+            <input value={input} onChange={(e) => {
+                setInput(e.target.value)
+
                 }} type='text' />
-            <button onClick={()=>{fetchWord(currentWord)}}>search</button>
+            <button onClick={handleSubmit}>search</button>
         </section>
     )
 }

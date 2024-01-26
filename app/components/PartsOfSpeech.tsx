@@ -19,12 +19,11 @@ const PartsOfSpeech = () => {
 
     const { currentWord } = React.useContext(WordContext)
     const speechMapUi = ({partOfSpeech, definitions, synonyms}: Part) =>{
-        console.log(Array.isArray(definitions))
-        return (<>
+        return (<section key={v4()}>
             <h2>{partOfSpeech}</h2>
             <MeaningsList list={definitions} />
-            { synonyms.length > 0? <h3>Synonym : {synonyms[0]}</h3> : null}
-        </>)
+            { synonyms.length ? <h3>Synonym : {synonyms[0]}</h3> : null}
+        </section>)
     }
     return (
         <>

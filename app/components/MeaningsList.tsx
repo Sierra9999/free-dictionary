@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {v4} from 'uuid'
 const MeaningsList = ({list} : {list : {
   definition: string;
   synonyms: string[];
@@ -7,7 +7,7 @@ const MeaningsList = ({list} : {list : {
 }[]}) => {
   return (
     <ul>
-       {list.map(item => (<li>{item.definition}</li>))}
+       {list.map(item => (<li key={v4()}>{item.definition}</li>))}
     </ul>
   )
 }

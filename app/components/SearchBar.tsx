@@ -8,10 +8,8 @@ const SearchBar = () => {
     let {currentWord,setCurrentWord} = React.useContext(WordContext)
 
     const handleSubmit = ()=>{
-        console.log("123")
         //@ts-ignore
         fetchWord(input).then(data => {setCurrentWord(data)})
-        console.log(currentWord)
     }
 
     return (

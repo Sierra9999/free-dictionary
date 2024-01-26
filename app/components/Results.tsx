@@ -1,10 +1,16 @@
+'use client'
 import React from 'react'
+import WordContext from '../contexts/WordContext'
 
-const Results : React.FC<{word : string, pronunciation : string}> = ({word, pronunciation}) => {
+const Results = () => {
+  let {currentWord} = React.useContext(WordContext)
+
   return (
     <div>
-        <h1>{word}</h1>
-        <a href={pronunciation}></a>
+        <h1>
+          {currentWord? currentWord.word : "..."}
+        </h1>
+        <p>{currentWord? currentWord.phonetic : ""}</p>
     </div>
   )
 }

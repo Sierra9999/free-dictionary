@@ -1,10 +1,13 @@
 import React from 'react'
 
-const MeaningsList:React.FC <{meanings : string[]}> = ({meanings}) => {
-
+const MeaningsList = ({list} : {list : {
+  definition: string;
+  synonyms: string[];
+  antonyms: string[];
+}[]}) => {
   return (
     <ul>
-        {meanings.map((meaning)=>(<li>{meaning}</li>))}
+       {list.map(item => (<li>{item.definition}</li>))}
     </ul>
   )
 }
